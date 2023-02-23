@@ -1,0 +1,25 @@
+{
+  "name": "dpd-data-server-v3",
+  "version": "0.3.0",
+  "private": true,
+  "author": "kyeZ",
+  "scripts": {
+    "start": "node  ./bin/www",
+    "dev": "nodemon  ./bin/www",
+    "bot": "node ./bot/index.js"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "cors": "^2.8.5",
+    "debug": "~2.6.9",
+    "discord.js": "^14.7.1",
+    "dotenv": "^16.0.3",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "jade": "~1.11.0",
+    "mongodb": "5.0",
+    "morgan": "~1.9.1",
+    "nodemon": "^2.0.20",
+    "puppeteer": "17.1.3"
+  }
+}
