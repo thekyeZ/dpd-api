@@ -11,9 +11,15 @@ router.get("/", async (req, res) => {
   res.status(200).json(workers);
 });
 
-router.get("/veh", async (req, res) => {
+router.get("/worker-veh", async (req, res) => {
   // await dbHelper.getWorkerVeh("63f7cb6d52edb09fcf28e681")
   const vehicle = await (await dbHelper.getWorkerVeh()).toArray();
+  res.status(200).json(vehicle);
+});
+
+router.get("/tabor", async (req, res) => {
+  // await dbHelper.getWorkerVeh("63f7cb6d52edb09fcf28e681")
+  const vehicle = await (await dbHelper.getTabor()).toArray();
   res.status(200).json(vehicle);
 });
 

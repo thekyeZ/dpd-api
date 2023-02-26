@@ -61,18 +61,46 @@ module.exports = {
       // await closeConnection();
     }
   },
-  async getWorkerVeh(vehID) {
+  async getTabor() {
+    logger(`--- Getting all vehicles ---`);
+    const connection = await connect();
+    if (!connection) return;
+    try {
+      const database = client.db("dpd-dev");
+      const collection = database.collection("tabor");
+      const query = {};
+      const options = {};
+      const cursor = collection.find(query, options);
+
+      // print a message if no documents were found
+      if ((await cursor.count()) === 0) {
+        logger("No documents found!");
+        return [];
+      }
+
+      return cursor.map((el) => el);
+    } catch (e) {
+      logger("ERROR Getting data from DB");
+      console.log(e);
+
+      return null;
+    } finally {
+      // await closeConnection();
+    }
+  },
+
+  async getWorkerVeh(workerID) {
     // = "63f7cb6d52edb09fcf28e681"
-    logger(`--- Getting vehicle ${vehID} ---`);
+    logger(`--- Getting vehicle for worker ${workerID} ---`);
     const connection = await connect();
     if (!connection) return;
 
     try {
       const database = client.db("dpd-dev");
       const collection = database.collection("tabor");
-      const query = vehID
+      const query = workerID
         ? {
-            _id: new ObjectId(vehID),
+            assignedWorker: new ObjectId(workerID),
           }
         : {};
       const options = {};
